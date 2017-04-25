@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -60,6 +60,157 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-css选择器和display属性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/25/css选择器和display属性/" class="article-date">
+  <time datetime="2017-04-25T11:18:47.000Z" itemprop="datePublished">2017-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/25/css选择器和display属性/">css选择器和display属性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##复习</p>
+<blockquote>
+<p>选择器的组成不要超过三个<br>选择器的查找机制是从右向左      面试题<br>后代选择器没有必要将每一层元素都写出来，只写那些关键节点即可（具有代表性的）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.div1 ul li&#123;&#125;</div><div class="line">第一步选择这个文档下所有的li</div><div class="line">第二步选择那些li是ul下面的</div><div class="line">第三步算则哪些li是ul下面，ul还是.div1下面的</div></pre></td></tr></table></figure>
+<p>交集选择器<br>一个元素具有两个属性，可以将这两个属性做成交集选择器<br>组成选择器的两部分，必须属于同一个元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">h1.p1&#123;&#125;--&gt;  什么都选择不到</div><div class="line">&lt;p class=&quot;p1&quot;&gt;&lt;/p&gt;</div><div class="line">&lt;h1&gt;&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
+<p>后代选择器（派生选择器）<br>祖籍  子级{}  只要存在后代关系即可</p>
+<p>子级选择器<br>父级&gt;子级{}  父子两个元素是相邻</p>
+<p>属性选择器<br>只要是标签属性都可以用属性选择器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[href]&#123;&#125;</div><div class="line">[href=url]&#123;&#125;</div><div class="line">[title]&#123;&#125;</div><div class="line">[title=zfpx]&#123;&#125;</div><div class="line">&lt;a href=&quot;url&quot; title=&quot;zfpx&quot;&gt;&lt;/a&gt;</div></pre></td></tr></table></figure>
+<p>##display<br>根据这个属性可以将元素分成不同的类型，也会显示出不同的装填，例如属性值为block的时候，这个元素会独占一行，如果属性值为inline的时候，所有这个属性值得元素都会在一行显示，属性值为none，元素会在页面上消失…</p>
+<p>所有元素都有天生自带的display属性和属性值，叫做内置属性</p>
+<h4 id="block-块状元素（块级元素）"><a href="#block-块状元素（块级元素）" class="headerlink" title="block   块状元素（块级元素）"></a>block   块状元素（块级元素）</h4><p>特点：</p>
+<ul>
+<li>独占一行</li>
+<li>可以设置盒子模型的所有属性（width、height、border、padding、margin）</li>
+<li>默认宽度是父级元素内容的宽度，高度是本身内容的高度</li>
+<li>可以嵌套其他元素<ul>
+<li>dt 不能嵌套其他块级，可以嵌套行内元素等</li>
+<li>p不能嵌套块级元素，可以嵌套行内元素等</li>
+</ul>
+</li>
+<li>永远会在父级盒子的左上角开始排布，从上到下排</li>
+</ul>
+<blockquote>
+<p>人为设置的样式要比元素自带的样式权重高<br>块级元素这些特点，我们将其称作 BFC（block formatting context）块状元素在上下文中的渲染模式（块状元素应该怎么排布）  <strong>面试题</strong></p>
+</blockquote>
+<h4 id="inline-行内元素（内联元素）"><a href="#inline-行内元素（内联元素）" class="headerlink" title="inline 行内元素（内联元素）"></a>inline 行内元素（内联元素）</h4><p>特点：</p>
+<ul>
+<li>在一行显示</li>
+<li>不能设置宽度、高度</li>
+<li>padding、margin的上下值设置不生效，左右值生效</li>
+<li>默认宽度高度是本身内容的宽高</li>
+<li>几个行内元素默认的垂直方向对齐方式是基线对齐</li>
+<li>在编辑代码时，如果行内元素之间有回车或者空格，那么在页面显示的时候，就会默认有间隙<ul>
+<li>将font-size设置为0，可以解决这个问题</li>
+</ul>
+</li>
+<li>行内元素不能嵌套块级元素</li>
+</ul>
+<h4 id="inline-block-行内块级元素"><a href="#inline-block-行内块级元素" class="headerlink" title="inline-block 行内块级元素"></a>inline-block 行内块级元素</h4><p>特点：</p>
+<ul>
+<li>在一行显示</li>
+<li>可以直接设置宽度高度padding margin值</li>
+<li>默认宽度高度是本身内容的宽高</li>
+<li>几个行内元素默认的垂直方向对齐方式是基线对齐</li>
+<li>在编辑代码时，如果行内元素之间有回车或者空格，那么在页面显示的时候，就会默认有间隙<ul>
+<li>将font-size设置为0，可以解决这个问题;但还要讲font-size从新设置下</li>
+</ul>
+</li>
+<li>行内元素不能嵌套块级元素</li>
+</ul>
+<h4 id="vertical-align-改变行内元素和行内块级元素的基线对齐方式"><a href="#vertical-align-改变行内元素和行内块级元素的基线对齐方式" class="headerlink" title="vertical-align 改变行内元素和行内块级元素的基线对齐方式"></a>vertical-align 改变行内元素和行内块级元素的基线对齐方式</h4><table>
+<thead>
+<tr>
+<th>值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>top</td>
+<td>所有平级元素，去找最高（高度最高）元素的顶部进行对齐</td>
+</tr>
+<tr>
+<td>bottom</td>
+<td>所有平级元素，去找最高（高度最高）元素的底部进行对齐</td>
+</tr>
+<tr>
+<td>middle</td>
+<td>所有平级元素，去找最高（高度最高）元素的中部进行对齐</td>
+</tr>
+<tr>
+<td>length（数值）</td>
+<td>px %</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>改变对齐方式的时候，所有元素都要添加这个属性</p>
+</blockquote>
+<h4 id="none-将这个元素在页面上隐藏起来（完全消失）"><a href="#none-将这个元素在页面上隐藏起来（完全消失）" class="headerlink" title="none 将这个元素在页面上隐藏起来（完全消失）"></a>none 将这个元素在页面上隐藏起来（完全消失）</h4><blockquote>
+<p>怎样再显示出来：将none用其他的属性值替换，一般使用block</p>
+</blockquote>
+<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><p>每一个元素在html中都是一个盒子，用来装其他盒子或者是内容</p>
+<p>可以将html页面看做是一个仓库，仓库中从上到下摆了很多的箱子，易碎品 （盒子和盒子之间要有距离 内容与盒子之间要有填充  盒子本身要有厚度）</p>
+<p>height: 100%; 指的是继承父级元素“内容”的高度<br>width:100%;指的是继承父级元素“内容”的宽度</p>
+<blockquote>
+<p>父子关系的时候，在设置margin值的时候，一般只设置上和左，不会设置下和右</p>
+</blockquote>
+<p>盒子自身的宽度=左侧边框的宽度+左侧内边距+内容宽度+右侧内边距+右侧边框的宽度<br>allWidth=(border-left-width) + (padding-left) + (width) + (padding-right) + (border-right-width)</p>
+<p>allHeight=(border-top-width) + (padding-top) + (height) + (padding-bottom) + (border-bottom-width)</p>
+<p>padding和margin<br>padding:1px 2px 3px 4px;<br>            top right bottom left<br>padding:1px 2px 3px;<br>            top   left/right   bottom<br>padding:1px 2px;   top/bottom  left/right</p>
+<p>border的写法<br>border-top-width  上边框的宽度<br>border-top-style   上边框的样式<br>border-top-color   上边框的颜色</p>
+<p>border-color : red green yellow pink; 上右下左<br>border-color:red green yellow; 上 左右 下<br>border-color:red green; 上下  左右<br>border-color:red; 四个方向是一个颜色</p>
+<p>border-width : 1px 2px 3px 4px; 上右下左<br>border-width: 1px 2px 3px; 上 左右 下<br>border-width:1px 2px; 上下  左右<br>border-color:3px; 四个方向是一个颜色</p>
+<p>border-top : 1px solid pink;</p>
+<p>border:1px solid pink;  四个方向所有样式一致</p>
+<h4 id="margin-支持负值"><a href="#margin-支持负值" class="headerlink" title="margin 支持负值"></a>margin 支持负值</h4><p>margin-left:-30px;</p>
+<p>margin-left和margin-top为负值的时候 跑出浏览器的部分会被吃掉，不会撑开整个页面</p>
+<h4 id="margin-top的传递问题"><a href="#margin-top的传递问题" class="headerlink" title="margin-top的传递问题"></a>margin-top的传递问题</h4><p>如果父级元素没有padding-top或border-top值的时候，子元素设置margin-top值，会将这个值传递给父元素</p>
+<p>解决方法：</p>
+<ul>
+<li>给父级元素一个属性，overflow:hidden;</li>
+<li>将子级元素的margin-top值去掉，改成父级元素的padding-top值  这个方法建议使用</li>
+</ul>
+<h4 id="margin-left-margin-right-在-ie6-中会双倍"><a href="#margin-left-margin-right-在-ie6-中会双倍" class="headerlink" title="margin-left/margin-right 在 ie6 中会双倍"></a>margin-left/margin-right 在 ie6 中会双倍</h4><p>当个元素浮动的时候，有左右的外边距，有时候ie6会出现双倍边距的问题<br>解决方案：</p>
+<ul>
+<li>给这个元素添加overflow:hidden;</li>
+<li>写ie6的兼容方式 例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">div&#123;</div><div class="line">	float:left;</div><div class="line">	margin-left:10px !important;</div><div class="line">	_margin-left:5px;/*当浏览器是ie6的时候，读取这句话*/</div><div class="line">	CSS属性hack</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>!important  出现正在css里面的时候，这个属性会覆盖掉所有之前设置的样式  — 面试题</p>
+<p><strong><a href="http://baike.baidu.com/item/css%20hack?fr=aladdin" target="_blank" rel="external">css hack</a></strong></p>
+<h4 id="overflow-盒子内容多余部分的处理方式"><a href="#overflow-盒子内容多余部分的处理方式" class="headerlink" title="overflow 盒子内容多余部分的处理方式"></a>overflow 盒子内容多余部分的处理方式</h4><p>overflow:hidden; 直接将多余的隐藏<br>overflow:auto; 如果有多余部分出现滚动条，如果没有就不出现<br>overflow:scroll; 不论是否有多余部分，都会出现滚动条</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/25/css选择器和display属性/" data-id="cj1xglnn90001ekqmo93wawrx" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-CSS层叠样式表" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -182,7 +333,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/25/CSS层叠样式表/" data-id="cj1xgi8wm000378qmvnqhb08s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/25/CSS层叠样式表/" data-id="cj1xglnn90000ekqmreypzqnv" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -372,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/25/html的常用标签/" data-id="cj1xgi8w7000078qm34xcuqau" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/25/html的常用标签/" data-id="cj1xglnn90003ekqmyfuz8x3z" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -638,7 +789,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/25/前端的知识/" data-id="cj1xgi8wm000478qmyblkm9za" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/25/前端的知识/" data-id="cj1xglnno0004ekqmznqgbyhy" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -675,7 +826,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/25/四期JS正式课第一天作业/" data-id="cj1xgi8wm000178qmfluxupib" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/25/四期JS正式课第一天作业/" data-id="cj1xglnno0005ekqm3mxqvpak" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -720,7 +871,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/25/hello-world/" data-id="cj1xgi8wm000278qm4eiit084" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/25/hello-world/" data-id="cj1xglnn90002ekqmktv6vwxr" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -755,9 +906,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/04/25/css选择器和display属性/">css选择器和display属性</a>
+          </li>
         
           <li>
             <a href="/2017/04/25/CSS层叠样式表/">CSS层叠样式表</a>
@@ -775,10 +930,6 @@
             <a href="/2017/04/25/四期JS正式课第一天作业/">四期JS正式课第一天作业</a>
           </li>
         
-          <li>
-            <a href="/2017/04/25/hello-world/">Hello World</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -792,7 +943,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
